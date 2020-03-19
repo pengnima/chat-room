@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: content-box;
+    }
+    .main-body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      background-color: #eeeeee;
+    }
+  </style>
+  <link rel="stylesheet" href="./css/view.css" />
+  <link rel="stylesheet" href="./css/send.css" />
+  <script>
+    if (true) {
+      window.onload = function() {
+        /*
+         * 获取各个元素
+         */
+        let oBtn = document.querySelector(".user-send");
+        let oInput = document.querySelector(".user-input");
+        let viewContent = document.querySelector(".view-content");
+
+        // 如果浏览器有 WS 就执行
+        if ("WebSocket" in window) {
+          // 与"ws://localhost:4000" 建立连接
+          let ws = new WebSocket("ws://192.168.0.105:4000/test");
+
+          //接受 由 后端发送回来的 数据
+          ws.onmessage = function(msg) {
+            // console.log(msg);
+            let obj = JSON.parse(msg.data);
+
+            let node = document.createElement("div");
+            if (obj.isMine) {
+              node.className = "msg my-msg";
+            } else {
+              node.className = "msg other-msg";
+            }
+
+            let oText = document.createTextNode(obj.msg);
+
+            node.appendChild(oText);
+            viewContent.appendChild(node);
+            viewContent.appendChild(document.createElement("br"));
+
+            viewContent.scrollTop = viewContent.scrollHeight;
+          };
+
+          //事件open：当连接建立时触发
+          ws.onopen = function() {
+            console.log("已连接上后端的WSS");
+
+            oBtn.onclick = function() {
+              if (oInput.value != "") {
+                ws.send(oInput.value);
+                oInput.value = "";
+              }
+            };
+          };
+          // console.log(ws);
+        }
+      };
+    }
+  </script>
+
+  <body>
+    <div class="main-body">
+      <div class="view-content"></div>
+      <div class="send-content">
+        <textarea class="user-input"></textarea>
+        <button class="user-send">发送</button>
+      </div>
+    </div>
+  </body>
+</html>
