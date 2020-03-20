@@ -1,0 +1,72 @@
+@import "./send.css";
+
+@font-face {
+  font-family: "iconfont"; /* project id 1688656 */
+  src: url("//at.alicdn.com/t/font_1688656_1xu8cq3ou3o.eot");
+  src: url("//at.alicdn.com/t/font_1688656_1xu8cq3ou3o.eot?#iefix")
+      format("embedded-opentype"),
+    url("//at.alicdn.com/t/font_1688656_1xu8cq3ou3o.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_1688656_1xu8cq3ou3o.woff") format("woff"),
+    url("//at.alicdn.com/t/font_1688656_1xu8cq3ou3o.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_1688656_1xu8cq3ou3o.svg#iconfont") format("svg");
+}
+
+.iconfont {
+  font-family: "iconfont";
+  font-size: 30px;
+  font-style: normal;
+  /* 清楚抗锯齿 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.user-send {
+  background-image: linear-gradient(45deg, rgb(0, 217, 255), rgb(1, 90, 255));
+
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.user-send > .plane {
+  display: inline-block;
+}
+.user-send > .mail {
+  display: none;
+
+  position: relative;
+  left: 1px;
+  bottom: 52px;
+}
+
+.delivered > .plane {
+  animation: planeHidden 1s;
+}
+.delivered > .mail {
+  display: inline-block;
+  animation: mailTranslate 1s;
+}
+@keyframes planeHidden {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes mailTranslate {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(100px, 0, 0);
+  }
+}

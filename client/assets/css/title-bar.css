@@ -1,0 +1,41 @@
+.title-bar {
+  height: 60px;
+  background-image: linear-gradient(90deg, rgb(0, 217, 255), rgb(0, 158, 255));
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.left {
+  width: 20vw;
+}
+.right {
+  flex: 1;
+
+  position: relative;
+}
+.right::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 12px);
+  top: calc(50% - 6px);
+
+  width: 20px;
+  height: 3px;
+  border-width: 3px 0 3px 0;
+  border-style: solid;
+  border-top-color: white;
+  border-bottom-color: white;
+
+  filter: drop-shadow(0 6px 0 white);
+}
+
+.center {
+  width: 60vw;
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+  color: white;
+}

@@ -1,0 +1,66 @@
+.mask {
+  display: none;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 998;
+}
+.room {
+  display: none;
+
+  position: absolute;
+  z-index: 999;
+
+  right: 6vw;
+  top: 50px;
+  border-radius: 6px;
+
+  width: 50vw;
+  height: 50vh;
+  background-color: white;
+  padding: 20px;
+
+  transform-origin: right top;
+}
+.room.not-show {
+  display: block;
+  animation: scaleShowOut 0.5s;
+}
+.room.is-show {
+  display: block;
+  animation: scaleShowIn 0.5s;
+}
+
+@keyframes scaleShowIn {
+  0% {
+    transform: scale(0.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes scaleShowOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+.room::after {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: 3vw;
+  border: 8px solid transparent;
+  border-bottom-color: white;
+}
+.room-item {
+  font-size: 18px;
+  height: 100%;
+  overflow: auto;
+}

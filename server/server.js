@@ -27,6 +27,13 @@ wss.on("connection", function(ws) {
       case 0:
         //加昵称
         nameArr.push({ name: msgObj.name, id });
+        let names = [];
+        nameArr.forEach(item => {
+          names.push(item.name);
+        });
+        webSockets.forEach(item => {
+          mySend(item.ws, { names, truename: msgObj.name, type: 2 });
+        });
         break;
       case 1:
         //发信息

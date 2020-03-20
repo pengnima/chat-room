@@ -23,15 +23,30 @@
     }
   </style>
   <link rel="stylesheet" href="./assets/css/view.css" />
-  <link rel="stylesheet" href="./assets/css/send.css" />
-  <script src="./assets/js/index.js"></script>
-
+  <link rel="stylesheet" href="./assets/css/send-beautify.css" />
+  <link rel="stylesheet" href="./assets/css/title-bar.css" />
+  <link rel="stylesheet" href="./assets/css/room.css" />
+  <script src="./assets/js/index.js" type="module"></script>
   <body>
+    <div class="mask"></div>
+    <div class="room">
+      <div class="room-item"></div>
+    </div>
     <div class="main-body">
+      <div class="title-bar">
+        <div class="left"></div>
+        <div class="center">聊天室</div>
+        <div class="right"></div>
+      </div>
       <div class="view-content"></div>
       <div class="send-content">
         <textarea class="user-input"></textarea>
-        <button class="user-send">发送</button>
+        <!-- delivered -->
+        <div class="user-send">
+          <i class="iconfont plane">&#xe60d;</i>
+          <i class="iconfont mail">&#xe600;</i>
+          <!-- <i class="iconfont mail">&#xe6d3;</i> -->
+        </div>
       </div>
     </div>
   </body>
