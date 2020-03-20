@@ -7,6 +7,7 @@ const wss = new ws.Server({
 
 let webSockets = [];
 let nameArr = [];
+let names = [];
 /**
  * 监听 来自前端的ws请求
  */
@@ -27,12 +28,17 @@ wss.on("connection", function(ws) {
       case 0:
         //加昵称
         nameArr.push({ name: msgObj.name, id });
-        let names = [];
+        names = [];
         nameArr.forEach(item => {
           names.push(item.name);
         });
         webSockets.forEach(item => {
-          mySend(item.ws, { names, truename: msgObj.name, type: 2 });
+          mySend(item.ws, {
+            names,
+            truename: msgObj.name,
+            type: 2,
+            isquit: false
+          });
         });
         break;
       case 1:
@@ -57,6 +63,19 @@ wss.on("connection", function(ws) {
         let index2 = nameArr.indexOf(msgObj.id);
         nameArr.splice(index2, 1);
 
+        names = [];
+        nameArr.forEach(item => {
+          names.push(item.name);
+        });
+        webSockets.forEach(item => {
+          mySend(item.ws, {
+            names,
+            truename: msgObj.uName,
+            type: 2,
+            isquit: true
+          });
+        });
+
         console.log(`剩余 ${webSockets.length} 条`);
         break;
       default:
@@ -65,7 +84,7 @@ wss.on("connection", function(ws) {
   });
 
   ws.on("close", function() {
-    console.log("前端关闭了");
+    console.log("前端退出了一个");
   });
 });
 

@@ -36,11 +36,8 @@ export default function WebSocketFunc(URL, PORT, ws, uName, msgObj) {
           let roomItem = document.querySelector(".room-item");
           let barCenter = document.querySelector(".title-bar .center");
           //创建 加入小tips
-          _createDOM_normal(
-            viewContent,
-            mbd.truename + " ->加入聊天室",
-            "tips"
-          );
+          let str = mbd.isquit == false ? " ->加入聊天室" : " ->退出聊天室";
+          _createDOM_normal(viewContent, mbd.truename + str, "tips");
 
           //创建聊天室人名
           roomItem.innerHTML = "";
